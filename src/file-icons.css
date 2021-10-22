@@ -1,0 +1,59 @@
+.file-icon {
+	width: 60px;
+}
+.file-icon--pdf .file-icon__shadow {
+	fill: #f9e3da;
+}
+.file-icon--pdf .file-icon__outline,
+.file-icon--pdf .file-icon__type {
+	fill: #ed665f;
+}
+.file-icon--doc .file-icon__shadow {
+	fill: #e8f0f8;
+}
+.file-icon--doc .file-icon__outline,
+.file-icon--doc .file-icon__type {
+	fill: #4585c7;
+}
+.file-icon--xls .file-icon__shadow {
+	fill: #e0f1e6;
+}
+.file-icon--xls .file-icon__outline,
+.file-icon--xls .file-icon__type {
+	fill: #6cc08a;
+}
+.file-icon--psd .file-icon__shadow {
+	fill: #e8f0f8;
+}
+.file-icon--psd .file-icon__outline,
+.file-icon--psd .file-icon__type {
+	fill: #4585c7;
+}
+.file-icon--ai .file-icon__shadow {
+	fill: #f3e9d8;
+}
+.file-icon--ai .file-icon__outline,
+.file-icon--ai .file-icon__type {
+	fill: #ed9b5f;
+}
+.file-icon--png .file-icon__shadow {
+	fill: #fbf3db;
+}
+.file-icon--png .file-icon__outline,
+.file-icon--png .file-icon__type {
+	fill: #edca5f;
+}
+.file-icon--jpg .file-icon__shadow {
+	fill: #f1e4f6;
+}
+.file-icon--jpg .file-icon__outline,
+.file-icon--jpg .file-icon__type {
+	fill: #b276c8;
+}
+.file-icon--unknown .file-icon__shadow {
+	fill: #e6e8ef;
+}
+.file-icon--unknown .file-icon__outline,
+.file-icon--unknown .file-icon__type {
+	fill: #afb4bc;
+}
