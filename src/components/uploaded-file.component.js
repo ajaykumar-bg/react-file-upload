@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useMemo } from 'react';
 import {
 	ListItem,
 	ListItemText,
@@ -7,10 +7,11 @@ import {
 } from '@mui/material';
 import { Check as CheckIcon, Close as CloseIcon } from '@mui/icons-material';
 
-import { makeStyles } from '@mui/styles';
 import UploadedFileIcon from './uploaded-file-icon.component';
-
-const useStyles = makeStyles({});
+import {
+	FileTypeExtensions,
+	FileTypes,
+} from '../constants/file-types.constants';
 
 function UploadedFile({
 	type,
@@ -18,7 +19,22 @@ function UploadedFile({
 	progress = 50,
 	completed = true,
 }) {
-	const classes = useStyles();
+	const getFileType = (fType) => {
+		switch (fType) {
+			case FileTypeExtensions.JPG:
+				return FileTypes.JPG;
+			case FileTypeExtensions.PNG:
+				return FileTypes.PNG;
+			case FileTypeExtensions.PDF:
+				return FileTypes.PDF;
+
+			default:
+				break;
+		}
+	};
+
+	const fileType = useMemo(() => getFileType(type), [type]);
+
 	return (
 		<ListItem
 			secondaryAction={
@@ -31,7 +47,7 @@ function UploadedFile({
 				</IconButton>
 			}
 		>
-			<UploadedFileIcon type={type} />
+			<UploadedFileIcon type={fileType} />
 			<ListItemText
 				primary={fileName}
 				secondary={

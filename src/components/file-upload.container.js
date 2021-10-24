@@ -1,48 +1,40 @@
-import * as React from 'react';
-import {
-	Card,
-	CardHeader,
-	CardContent,
-	CardActions,
-	Button,
-	Typography,
-} from '@mui/material';
+import React, { useState } from 'react';
+import { Card, CardHeader, CardContent, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 import UploadedFiles from './uploaded-files.component';
-import MyDropzone from './file-input.component';
+import FileInput from './file-input.component';
 
 const useStyles = makeStyles({
-	title: {},
+	title: {
+		textAlign: 'center',
+		fontFamily: 'sans-serif',
+		fontSize: 24,
+		fontWeight: 600,
+	},
 });
 
 function FileUploadContainer() {
 	const classes = useStyles();
+	const [files, setFiles] = useState([]);
+
+	const onFileAdded = (addedFiles) => {
+		debugger;
+		const file = addedFiles[0];
+		setFiles([...files, file]);
+	};
 	return (
 		<Card>
 			<CardHeader
-				title={
-					<Typography
-						style={{
-							textAlign: 'center',
-							fontFamily: 'sans-serif',
-							fontSize: 24,
-							fontWeight: 600,
-						}}
-					>
-						Upload File
-					</Typography>
-				}
+				title={<Typography className={classes.title}>Upload File</Typography>}
 			></CardHeader>
 			<CardContent>
-				<UploadedFiles />
-				<MyDropzone />
+				{JSON.stringify(files)}
+				<UploadedFiles files={files} />
+				<FileInput fileAdded={onFileAdded} />
 			</CardContent>
-			{/* <CardActions>
-				<Button size='small'>Learn More</Button>
-			</CardActions> */}
 		</Card>
 	);
 }
 
-export default FileUploadContainer;
+export default React.memo(FileUploadContainer);

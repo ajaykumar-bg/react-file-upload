@@ -7,3 +7,9 @@ export const FileTypes = {
 	PSD: 'psd',
 	XLS: 'xls',
 };
+
+export const FileTypeExtensions = {
+	JPG: 'image/jpeg',
+	PNG: 'image/png',
+	PDF: 'application/pdf',
+};

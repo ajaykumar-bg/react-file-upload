@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
-	dropzoneArea: {
-		margin: 20,
-	},
 	dropzone: {
+		margin: 20,
 		cursor: 'pointer',
 		minHeight: 150,
 		border: '2px dashed rgba(0, 0, 0, 0.3)',
@@ -23,17 +22,28 @@ const useStyles = makeStyles({
 	},
 });
 
-function DropzoneDialogExample() {
+function DropzoneDialogExample({ fileAdded }) {
+	const onDrop = useCallback((acceptedFiles) => {
+		fileAdded(acceptedFiles);
+		// Do something with the files
+	}, []);
+	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
 	const classes = useStyles();
 	return (
-		<section className={classes.dropzoneArea}>
-			<div className={classes.dropzone}>
-				<div className={classes.dropzoneText}>
-					<div>DRAG FILE HERE</div>
+		<section {...getRootProps()} className={classes.dropzone}>
+			<input {...getInputProps()} />
+			<div className={classes.dropzoneText}>
+				{isDragActive ? (
+					<div>Drop the files here ...</div>
+				) : (
 					<div>
-						OR <span style={{ color: 'cornflowerblue' }}>BROWSE</span>
+						DRAG FILE HERE{' '}
+						<div>
+							OR <span style={{ color: 'cornflowerblue' }}>BROWSE</span>
+						</div>
 					</div>
-				</div>
+				)}
 			</div>
 		</section>
 	);

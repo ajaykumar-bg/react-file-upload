@@ -1,9 +1,6 @@
 import * as React from 'react';
-
 import { List, Grid } from '@mui/material';
-
 import { styled } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
 
 import UploadedFile from './uploaded-file.component';
 
@@ -11,15 +8,23 @@ const Demo = styled('div')(({ theme }) => ({
 	backgroundColor: theme.palette.background.paper,
 }));
 
-const useStyles = makeStyles({});
-
-function UploadedFiles() {
-	const classes = useStyles();
+function UploadedFiles({ files = [] }) {
 	return (
 		<Grid>
 			<Demo>
 				<List>
-					<UploadedFile
+					{files.map((file, index) => {
+						return (
+							<UploadedFile
+								key={`${file.name}-${file.lastModified}`}
+								fileName={file.name}
+								type={file.type}
+								progress={100}
+								completed={true}
+							/>
+						);
+					})}
+					{/* <UploadedFile
 						type={'psd'}
 						fileName={'some-file-name.psd'}
 						progress={100}
@@ -60,7 +65,7 @@ function UploadedFiles() {
 						fileName={'some-file-name.jpg'}
 						progress={50}
 						completed={false}
-					/>
+					/> */}
 				</List>
 			</Demo>
 		</Grid>
