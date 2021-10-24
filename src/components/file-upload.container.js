@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Card, CardHeader, CardContent, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
+import { connect } from 'react-redux';
+
 import UploadedFiles from './uploaded-files.component';
 import FileInput from './file-input.component';
+import { addFile } from '../store/actions/file.actions';
 
 const useStyles = makeStyles({
 	title: {
@@ -14,14 +17,14 @@ const useStyles = makeStyles({
 	},
 });
 
-function FileUploadContainer() {
+const FileUploadContainer = (props) => {
 	const classes = useStyles();
-	const [files, setFiles] = useState([]);
+	const { files } = props;
 
 	const onFileAdded = (addedFiles) => {
-		debugger;
 		const file = addedFiles[0];
-		setFiles([...files, file]);
+		const { path, lastModified, name, size, type } = file;
+		props.addFile({ path, lastModified, name, size, type });
 	};
 	return (
 		<Card>
@@ -29,12 +32,24 @@ function FileUploadContainer() {
 				title={<Typography className={classes.title}>Upload File</Typography>}
 			></CardHeader>
 			<CardContent>
-				{JSON.stringify(files)}
 				<UploadedFiles files={files} />
 				<FileInput fileAdded={onFileAdded} />
 			</CardContent>
 		</Card>
 	);
-}
+};
 
-export default React.memo(FileUploadContainer);
+const mapStateToProps = (state) => {
+	return { files: state.files };
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		addFile: (file) => dispatch(addFile(file)),
+	};
+};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(FileUploadContainer);

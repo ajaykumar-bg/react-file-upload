@@ -27,6 +27,8 @@ function UploadedFile({
 				return FileTypes.PNG;
 			case FileTypeExtensions.PDF:
 				return FileTypes.PDF;
+			case FileTypeExtensions.PSD:
+				return FileTypes.PSD;
 
 			default:
 				break;

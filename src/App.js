@@ -1,12 +1,18 @@
-import './App.css';
-import Card from '@mui/material/Card';
+import React from 'react';
+import { Card } from '@mui/material';
+import { Provider } from 'react-redux';
 import FileUploadContainer from './components/file-upload.container';
+
+import './App.css';
+import { store } from './store';
 
 function App() {
 	return (
-		<Card sx={{ margin: 20 }} md={{ margin: 30 }} lg={{ margin: 100 }}>
-			<FileUploadContainer />
-		</Card>
+		<Provider store={store}>
+			<Card sx={{ margin: 20 }} md={{ margin: 30 }} lg={{ margin: 100 }}>
+				<FileUploadContainer />
+			</Card>
+		</Provider>
 	);
 }
 

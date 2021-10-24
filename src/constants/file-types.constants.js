@@ -12,4 +12,5 @@ export const FileTypeExtensions = {
 	JPG: 'image/jpeg',
 	PNG: 'image/png',
 	PDF: 'application/pdf',
+	PSD: 'image/vnd.adobe.photoshop',
 };
