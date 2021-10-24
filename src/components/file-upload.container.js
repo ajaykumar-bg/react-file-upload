@@ -10,6 +10,7 @@ import {
 import { makeStyles } from '@mui/styles';
 
 import UploadedFiles from './uploaded-files.component';
+import MyDropzone from './file-input.component';
 
 const useStyles = makeStyles({
 	title: {},
@@ -35,10 +36,11 @@ function FileUploadContainer() {
 			></CardHeader>
 			<CardContent>
 				<UploadedFiles />
+				<MyDropzone />
 			</CardContent>
-			<CardActions>
+			{/* <CardActions>
 				<Button size='small'>Learn More</Button>
-			</CardActions>
+			</CardActions> */}
 		</Card>
 	);
 }
